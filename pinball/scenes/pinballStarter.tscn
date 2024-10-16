@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhv7habpmqjpy"]
+
+[ext_resource type="PackedScene" uid="uid://bokhqxe2v15jj" path="res://scenes/PinPaddleL.tscn" id="1_5qyme"]
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_6qhd8"]
+[ext_resource type="PackedScene" uid="uid://c55qbxhntdmcs" path="res://scenes/ball.tscn" id="1_mrdqu"]
+[ext_resource type="PackedScene" uid="uid://cabciv6bghl7x" path="res://scenes/obstacle.tscn" id="2_sq01j"]
+[ext_resource type="PackedScene" uid="uid://bnmv3xfy2ram6" path="res://scenes/obstacle2.tscn" id="3_ldsem"]
+[ext_resource type="PackedScene" uid="uid://wn5g7lo17l3u" path="res://scenes/PinPaddleR.tscn" id="5_8l3ke"]
+[ext_resource type="Script" path="res://scripts/bucket.gd" id="5_tuh8t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1s21e"]
+size = Vector3(4.73926, 0.231964, 2.45996)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t3ogf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3stp"]
+albedo_color = Color(1, 1, 0.443137, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_584sf"]
+size = Vector3(8.54785, 4.88086, 4.6228)
+
+[node name="pinballStarter" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+script = ExtResource("1_6qhd8")
+ball_resource = ExtResource("1_mrdqu")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 12, 9.87)
+fov = 60.0
+size = 14.415
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.669377, 0, -0.742923, 0.502198, 0.736924, 0.452483, 0.547477, -0.675976, 0.49328, 0, 4.97079, 0)
+
+[node name="ball" parent="." instance=ExtResource("1_mrdqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.763, -6.27601)
+gravity_scale = 2.0
+
+[node name="table objects" type="Node3D" parent="."]
+
+[node name="table" type="StaticBody3D" parent="table objects"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table objects/table"]
+transform = Transform3D(3.13485, 0, 0, 0, 3.13485, 0, 0, 0, 3.13485, 0, -0.132166, 0)
+shape = SubResource("BoxShape3D_1s21e")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="table objects/table"]
+transform = Transform3D(14.7376, 0, 0, 0, 0.711788, 0, 0, 0, 7.60985, 0, -0.135197, 0)
+mesh = SubResource("BoxMesh_t3ogf")
+surface_material_override/0 = SubResource("StandardMaterial3D_i3stp")
+
+[node name="obstacle1" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.30921, 0.231373, -2.56486)
+
+[node name="obstacle4" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.99112, 0.231373, -2.56486)
+
+[node name="obstacle5" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.99112, 0.231373, -4.6447)
+
+[node name="obstacle6" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.99112, 0.231373, 2.93273)
+
+[node name="obstacle7" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.99112, 0.231373, 4.65985)
+
+[node name="obstacle8" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.03633, 0.231373, 4.65985)
+
+[node name="obstacle9" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.03633, 0.231373, -0.716111)
+
+[node name="obstacle10" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.03633, 0.231373, -4.6447)
+
+[node name="obstacle11" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54296, 0.231373, -7.61242)
+
+[node name="obstacle12" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43693, 0.231373, -7.61242)
+
+[node name="obstacle2" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.30921, 0.231373, 2.82327)
+
+[node name="obstacle3" parent="table objects" instance=ExtResource("2_sq01j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.30921, 0.231373, 4.6112)
+
+[node name="smallObstacle1" parent="table objects" instance=ExtResource("3_ldsem")]
+transform = Transform3D(0.587136, -3.91989e-09, -0.809489, 2.44407e-09, 1, -3.0697e-09, 0.809489, -1.76115e-10, 0.587136, -3.10324, 0.231373, -4.36495)
+
+[node name="smallObstacle2" parent="table objects" instance=ExtResource("3_ldsem")]
+transform = Transform3D(0.670388, -3.91623e-09, -0.742011, 0, 1, 0, 0.742011, 0, 0.670388, 2.75471, 0.28746, -6.52097)
+
+[node name="smallObstacle3" parent="table objects" instance=ExtResource("3_ldsem")]
+transform = Transform3D(0.323802, 2.11293e-09, 0.946125, 2.98023e-08, 1, 0, -0.946125, 0, 0.323802, 0.591322, 0.147878, 0.640047)
+
+[node name="smallObstacle4" parent="table objects" instance=ExtResource("3_ldsem")]
+transform = Transform3D(0.267195, -0.0996886, 0.958472, 0.0295562, 0.995015, 0.0952499, -0.963189, 0.00287834, 0.268809, -0.96258, 0.359425, 1.0788)
+
+[node name="smallObstacle5" parent="table objects" instance=ExtResource("3_ldsem")]
+transform = Transform3D(0.953001, -1.39917e-09, 0.302969, 2.44407e-09, 1, -3.0697e-09, -0.302969, 3.6659e-09, 0.953001, 0.910492, 0.231373, 3.35843)
+
+[node name="bucket" type="Area3D" parent="table objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88882, 7.88867)
+script = ExtResource("5_tuh8t")
+ball = ExtResource("1_mrdqu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table objects/bucket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.33109, 3.61821)
+shape = SubResource("BoxShape3D_584sf")
+
+[node name="PinPaddleL" parent="." instance=ExtResource("1_5qyme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27869, 0.551497, 6.90536)
+rotatePower = 10.0
+
+[node name="PinPaddleR" parent="." instance=ExtResource("5_8l3ke")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900151, 0.572098, 6.9153)
+rotatePower = 10.0
+
+[connection signal="body_entered" from="table objects/bucket" to="table objects/bucket" method="_on_body_entered"]
